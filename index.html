@@ -21,74 +21,82 @@
       }
 
       const Navigation = () => {
-        <div className="navigation">
-          <img
-            className="avatar"
-            src="http://placehold.it/100x100"
-            alt="avatar"
-          />
-        </div>;
+        return (
+          <div className="navigation">
+            <img
+              className="avatar"
+              src="http://placehold.it/100x100"
+              alt="avatar"
+            />
+          </div>
+        );
       };
 
       const Intro = () => {
-        <div id="INTRO" className="section">
-          <h1>Portfolio</h1>
-          <div>
-            <a href="mailto:leilai.dev@gmail.com">leilai.dev@gmail.com</a>
+        return (
+          <div id="INTRO" className="section">
+            <h1>Portfolio</h1>
+            <div>
+              <a href="mailto:leilai.dev@gmail.com">leilai.dev@gmail.com</a>
+            </div>
           </div>
-        </div>;
+        );
       };
 
       const projects = [
         {
-          name: "",
-          time: "",
-          summary: "",
-          epilogue: "",
-          resultURL: ["https://github.com/leilai-dev"]
+          name: "a",
+          time: "a",
+          summary: "a",
+          epilogue: "a",
+          resultUrl: ["https://github.com/leilai-dev"]
         },
         {
-          name: "",
-          time: "",
-          summary: "",
-          epilogue: "",
-          resultURL: ["https://github.com/leilai-dev"]
+          name: "a",
+          time: "a",
+          summary: "a",
+          epilogue: "a",
+          resultUrl: ["https://github.com/leilai-dev"]
         }
       ];
 
-      const Project = ({ name, time, summary, epilogue, resultURL }) => {
-        <div>
-          <h2>{name}</h2>
-          <p>{time}</p>
+      const Project = ({ name, time, summary, epilogue, resultUrl }) => {
+        return (
           <div>
-            <h3>프로젝트 개요</h3>
-            <p>{summary}</p>
-            <h4>후기</h4>
-            <p>{epilogue}</p>
-            <h4>결과</h4>
+            <h2>{name}</h2>
+            <p>{time}</p>
             <div>
-              {resultUrl.map(url => (
-                <p>{url}</p>
-              ))}
+              <h3>프로젝트 개요</h3>
+              <p>{summary}</p>
+              <h4>후기</h4>
+              <p>{epilogue}</p>
+              <h4>결과</h4>
+              <div>
+                {resultUrl.map((url, index) => (
+                  <p key={index}>{url}</p>
+                ))}
+              </div>
             </div>
           </div>
-        </div>;
+        );
       };
 
       const App = () => {
-        <div>
-          <Navigation />
+        return (
           <div>
+            <Navigation />
             <div>
-              <Intro />
-              <Project {...projects[0]} />
-              <Project {...projects[1]} />
+              <div>
+                <Intro />
+                <Project {...projects[0]} />
+                <Project {...projects[1]} />
+              </div>
             </div>
           </div>
-        </div>;
+        );
       };
       // const App = () => {
-      //   <div>Hello</div>;
+      //   return <div>Hello</div>;
       // };
       ReactDOM.render(<App />, document.querySelector("#root"));
     </script>
