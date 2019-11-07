@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="root"></div>
     <script
       crossorigin
       src="https://unpkg.com/react@16/umd/react.development.js"
@@ -16,93 +21,103 @@
     <script type="text/babel">
       class NavLink extends React.Component {
         render() {
-          return <a href={`#${this.props.itemName}`}>{this.props.itemName}</a>;
+          return (
+            <a href={`#${this.props.itemName}`} className="nav-item">
+              {this.props.itemName}
+            </a>
+          );
         }
       }
 
-      const Navigation = () => {
-        return (
-          <div className="navigation">
-            <img
-              className="avatar"
-              src="http://placehold.it/100x100"
-              alt="avatar"
-            />
-          </div>
-        );
-      };
+      const Navigation = () => (
+        <nav className="navigation">
+          <img
+            className="avatar"
+            src="http://placehold.it/100x100"
+            alt="avatar"
+          />
+          <NavLink itemName="INTRO" />
+          <NavLink itemName="프로젝트1" />
+          <NavLink itemName="프로젝트2" />
+        </nav>
+      );
 
-      const Intro = () => {
-        return (
-          <div id="INTRO" className="section">
-            <h1>Portfolio</h1>
+      const Intro = () => (
+        <div id="INTRO" className="section">
+          <h1>Tony's Portfolios</h1>
+          <div>
+            <a href="mailto:email@email.com">edutony.hphk@gmail.com</a>
+            <p>I'm Tony, hi</p>
+          </div>
+          <div>
+            <h2>경력</h2>
+            <p>something something ...</p>
+            <h2>자기소개</h2>
+            <p>something something ...</p>
+          </div>
+        </div>
+      );
+
+      const Project = ({ name, time, summary, epilogue, resultsURL }) => (
+        <div id={name} className="section">
+          <h1>{name}</h1>
+          <p>{time}</p>
+          <div>
+            <h2>개요</h2>
+            <p>{summary}</p>
+            <h2>후기</h2>
+            <p>{epilogue}</p>
+            <h2>결과</h2>
+
             <div>
-              <a href="mailto:leilai.dev@gmail.com">leilai.dev@gmail.com</a>
+              {resultsURL.map(url => (
+                <img src={url} alt="project result" />
+              ))}
             </div>
           </div>
-        );
-      };
+        </div>
+      );
 
       const projects = [
         {
-          name: "a",
-          time: "a",
-          summary: "a",
-          epilogue: "a",
-          resultUrl: ["https://github.com/leilai-dev"]
+          name: "프로젝트1",
+          time: "2019.01~2019.02",
+          summary: "something something ...",
+          epilogue: "something something ...",
+          resultsURL: [
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200"
+          ]
         },
         {
-          name: "a",
-          time: "a",
-          summary: "a",
-          epilogue: "a",
-          resultUrl: ["https://github.com/leilai-dev"]
+          name: "프로젝트2",
+          time: "2019.01~2019.02",
+          summary: "something something ...",
+          epilogue: "something something ...",
+          resultsURL: [
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200",
+            "https://placehold.it/200x200"
+          ]
         }
       ];
 
-      const Project = ({ name, time, summary, epilogue, resultUrl }) => {
-        return (
-          <div>
-            <h2>{name}</h2>
-            <p>{time}</p>
-            <div>
-              <h3>프로젝트 개요</h3>
-              <p>{summary}</p>
-              <h4>후기</h4>
-              <p>{epilogue}</p>
-              <h4>결과</h4>
-              <div>
-                {resultUrl.map((url, index) => (
-                  <p key={index}>{url}</p>
-                ))}
-              </div>
+      const App = () => (
+        <div>
+          <Navigation />
+          <div className="main">
+            <div className="column-start">
+              <Intro />
+              <Project {...projects[0]} />
+              <Project {...projects[1]} />
             </div>
           </div>
-        );
-      };
-
-      const App = () => {
-        return (
-          <div>
-            <Navigation />
-            <div>
-              <div>
-                <Intro />
-                <Project {...projects[0]} />
-                <Project {...projects[1]} />
-              </div>
-            </div>
-          </div>
-        );
-      };
-      // const App = () => {
-      //   return <div>Hello</div>;
-      // };
+        </div>
+      );
       ReactDOM.render(<App />, document.querySelector("#root"));
     </script>
-    <title>Portfolio page</title>
-  </head>
-  <body>
-    <div id="root"></div>
   </body>
 </html>
